@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datepicker.min.js"></script>
+    <script src="js/bootstrap-datepicker.fa.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-datepicker.min.css">
+</head>
+<body>
+
+<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+    <div class="input-group stylish-input-group" id="DatePicker_FGroup_DateGo" style="display: block">
+        <input type="text" class="form-control text-center" name="date_go" id="date_go" value="" placeholder="روز - ماه - سال">
+    </div>
+</div>
+
+</body>
+</html>
+
+<script>
+    $(document).ready(function(){
+        // date picker
+        $("#date_go").datepicker({
+            yearRange:'1396:1340',
+            beforeShow:function(input,inst){
+                var offset=$(input).offset();
+                var DatePicker_FormGroup=$("#DatePicker_FGroup_DateGo").width();
+                var InputSize=$("#date_go").outerWidth();
+                var InputIcon=parseInt(DatePicker_FormGroup)-parseInt(InputSize);
+                var NewLeft=offset.left-InputIcon;
+                window.setTimeout(function(){
+                    $(inst.dpDiv).css({
+                        left:NewLeft+'px',
+                        width:DatePicker_FormGroup+"px"
+                    })
+                },1);
+            }
+        });
+    });
+</script>
